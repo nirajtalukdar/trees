@@ -16,6 +16,9 @@ public class LowestCommonAncestor {
 
         if (leftNode != null && rightNode != null) {
             return node;
+
+        } else if (leftNode == null && rightNode == null) {
+            return null;
         }
 
         return (leftNode != null) ? leftNode : rightNode;
