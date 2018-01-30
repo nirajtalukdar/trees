@@ -69,7 +69,8 @@ public class PostOrderTraversal {
 
                 /** Condition to traverse in the forward direction **/
 
-                if (previousNode == null || previousNode.getLeftNode() == currentNode || previousNode.getRightNode() == currentNode) {
+                if (previousNode == null || previousNode.getLeftNode() == currentNode
+                        || previousNode.getRightNode() == currentNode) {
 
                     if (currentNode.getLeftNode() != null) {
                         nodeStack.push(currentNode.getLeftNode());
