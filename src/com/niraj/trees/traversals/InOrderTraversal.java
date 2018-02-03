@@ -45,6 +45,7 @@ public class InOrderTraversal {
         return nodeList;
     }
 
+
     public List<Integer> inOrderTraverse(Node node) {
 
         List<Integer> nodeList = new ArrayList<>();
@@ -73,16 +74,15 @@ public class InOrderTraversal {
                         }
                     }
 
-                } else if (currentNode.getRightNode() != null) {
-                    if (currentNode.getRightNode() == previousNode) {
-                        nodeStack.pop();
-
-                    } else {
+                } else if (currentNode.getLeftNode() == previousNode) {
+                    nodeList.add(currentNode.getData());
+                    if (currentNode.getRightNode() != null) {
                         nodeStack.push(currentNode.getRightNode());
+                    } else {
+                        nodeStack.pop();
                     }
 
                 } else {
-                    nodeList.add(currentNode.getData());
                     nodeStack.pop();
                 }
 
@@ -139,17 +139,5 @@ public class InOrderTraversal {
         }
 
         return nodeList;
-    }
-
-    public static void main(String[] args) {
-
-        InOrderTraversal inOrderTraversal = new InOrderTraversal();
-        NodeInsertion nInsert = new NodeInsertion();
-        Node rootNode = nInsert.nodeGenerator();
-        List<Integer> nodeList = inOrderTraversal.doInOrderTraversal(rootNode);
-
-        for (Integer node : nodeList) {
-            System.out.print(node+" ");
-        }
     }
 }
