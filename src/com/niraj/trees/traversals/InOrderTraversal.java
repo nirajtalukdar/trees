@@ -10,6 +10,12 @@ import java.util.Stack;
 public class InOrderTraversal {
 
 
+    /**
+     * The below method uses a simple algorithm to do a in order traversal of a binary tree
+     * by associating the parent node and marking the visited node
+     * @param node
+     * @return java.util.List
+     */
     public List<Integer> doInOrderTraversal(Node node) {
 
         List<Integer> nodeList = new ArrayList<>();
@@ -45,6 +51,12 @@ public class InOrderTraversal {
         return nodeList;
     }
 
+    /**
+     * Non recursive way of doing InOrderTraversal without using associating with any
+     * parent nodes or flags
+     * @param node
+     * @return java.util.List
+     */
 
     public List<Integer> inOrderTraverse(Node node) {
 
@@ -83,54 +95,6 @@ public class InOrderTraversal {
                     }
 
                 } else {
-                    nodeStack.pop();
-                }
-
-                previousNode = currentNode;
-            }
-        }
-
-        return nodeList;
-    }
-
-    public List<Integer> inOrderTraverse(Node node) {
-
-        List<Integer> nodeList = new ArrayList<>();
-        Stack<Node> nodeStack = new Stack<>();
-        Node previousNode = null;
-
-        if (node != null) {
-
-            nodeStack.push(node);
-            while (!nodeStack.isEmpty()) {
-
-                Node currentNode = nodeStack.peek();
-
-                if (previousNode == null || previousNode.getLeftNode() == currentNode
-                        || previousNode.getRightNode() == currentNode) {
-
-                    if (currentNode.getLeftNode() != null) {
-                        nodeStack.push(currentNode.getLeftNode());
-
-                    } else {
-                        nodeList.add(currentNode.getData());
-                        if (currentNode.getRightNode() != null) {
-                            nodeStack.push(currentNode.getRightNode());
-                        } else {
-                            nodeStack.pop();
-                        }
-                    }
-
-                } else if (currentNode.getRightNode() != null) {
-                    if (currentNode.getRightNode() == previousNode) {
-                        nodeStack.pop();
-
-                    } else {
-                        nodeStack.push(currentNode.getRightNode());
-                    }
-
-                } else {
-                    nodeList.add(currentNode.getData());
                     nodeStack.pop();
                 }
 
