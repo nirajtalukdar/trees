@@ -47,12 +47,52 @@ public class PreOrderTraversal {
         return nodeList;
     }
 
+    public List<Integer> preOrderTraverse(Node node) {
+
+        List<Integer> nodeList = new ArrayList<>();
+        Stack<Node> nodeStack = new Stack<>();
+        Node previousNode = null;
+
+        if (node != null) {
+
+            nodeStack.push(node);
+            while (!nodeStack.isEmpty()) {
+
+                Node currentNode = nodeStack.peek();
+                if (previousNode == null || previousNode.getLeftNode() == currentNode
+                        || previousNode.getRightNode() == currentNode) {
+
+                    nodeList.add(currentNode.getData());
+                    if (currentNode.getLeftNode() != null) {
+                        nodeStack.push(currentNode.getLeftNode());
+                    } else if (currentNode.getRightNode() != null) {
+                        nodeStack.push(currentNode.getRightNode());
+                    } else {
+                        nodeStack.pop();
+                    }
+                } else if (currentNode.getLeftNode() == previousNode) {
+                    if (currentNode.getRightNode() != null) {
+                        nodeStack.push(currentNode.getRightNode());
+                    } else {
+                        nodeStack.pop();
+                    }
+                } else {
+                    nodeStack.pop();
+                }
+
+                previousNode = currentNode;
+            }
+        }
+
+        return nodeList;
+    }
+
     public static void main(String[] args) {
 
         PreOrderTraversal pOrderTraversal = new PreOrderTraversal();
         NodeInsertion nInsert = new NodeInsertion();
         Node rootNode = nInsert.nodeGenerator();
-        List<Integer> nodeList = pOrderTraversal.doPreOrderTraversal(rootNode);
+        List<Integer> nodeList = pOrderTraversal.preOrderTraverse(rootNode);
 
         for (Integer node : nodeList) {
             System.out.print(node+" ");
