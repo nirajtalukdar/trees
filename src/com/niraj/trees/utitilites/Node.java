@@ -3,10 +3,12 @@ package com.niraj.trees.utitilites;
 public class Node {
 
     private int data;
+    private int height;
     private boolean isVisited;
     private Node leftNode;
     private Node rightNode;
     private Node parentNode;
+
 
     public int getData() {
         return data;
@@ -14,6 +16,14 @@ public class Node {
 
     public void setData(int data) {
         this.data = data;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
     }
 
     public boolean isVisited() {
